@@ -31,7 +31,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info
 
-from .coordinator import ThermoProConfigEntry
+from . import ThermoProConfigEntry
 
 SENSOR_DESCRIPTIONS = {
     (
