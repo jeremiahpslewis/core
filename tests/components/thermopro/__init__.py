@@ -72,6 +72,16 @@ TP358_SERVICE_INFO = make_bluetooth_service_info(
     source="local",
 )
 
+TP393_SERVICE_INFO = make_bluetooth_service_info(
+    name="TP393 (5678)",
+    manufacturer_data={61890: b"\x00\x1d\x02,"},
+    service_uuids=[],
+    address="bb:cc:dd:ee:ff:11",
+    rssi=-62,
+    service_data={},
+    source="local",
+)
+
 TP962R_SERVICE_INFO = make_bluetooth_service_info(
     name="TP962R (0000)",
     manufacturer_data={14081: b"\x00;\x0b7\x00"},

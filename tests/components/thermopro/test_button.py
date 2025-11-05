@@ -13,7 +13,7 @@ from homeassistant.const import ATTR_ENTITY_ID, STATE_UNAVAILABLE, STATE_UNKNOWN
 from homeassistant.core import HomeAssistant
 from homeassistant.util import dt as dt_util
 
-from . import TP357_SERVICE_INFO, TP358_SERVICE_INFO
+from . import TP357_SERVICE_INFO, TP358_SERVICE_INFO, TP393_SERVICE_INFO
 
 from tests.common import async_fire_time_changed
 from tests.components.bluetooth import (
@@ -132,4 +132,41 @@ async def test_buttons_tp358_press(
     mock_thermoprodevice.set_datetime.assert_awaited_once_with(mock_now, am_pm=False)
 
     button_state = hass.states.get("button.tp358_4221_set_date_time")
+    assert button_state.state != STATE_UNKNOWN
+
+
+@pytest.mark.usefixtures("setup_thermopro")
+async def test_buttons_tp393_discovery(hass: HomeAssistant) -> None:
+    """Test discovery of TP393 device with button."""
+    assert not hass.states.async_all()
+    assert not hass.states.get("button.tp393_5678_set_date_time")
+    inject_bluetooth_service_info(hass, TP393_SERVICE_INFO)
+    await hass.async_block_till_done()
+
+    button = hass.states.get("button.tp393_5678_set_date_time")
+    assert button is not None
+    assert button.state == STATE_UNKNOWN
+
+
+@pytest.mark.usefixtures("setup_thermopro")
+async def test_buttons_tp393_press(
+    hass: HomeAssistant, mock_now: datetime, mock_thermoprodevice: ThermoProDevice
+) -> None:
+    """Test TP393 set date&time button press."""
+    assert not hass.states.async_all()
+    assert not hass.states.get("button.tp393_5678_set_date_time")
+    inject_bluetooth_service_info(hass, TP393_SERVICE_INFO)
+    await hass.async_block_till_done()
+    assert hass.states.get("button.tp393_5678_set_date_time")
+
+    await hass.services.async_call(
+        "button",
+        "press",
+        {ATTR_ENTITY_ID: "button.tp393_5678_set_date_time"},
+        blocking=True,
+    )
+
+    mock_thermoprodevice.set_datetime.assert_awaited_once_with(mock_now, am_pm=False)
+
+    button_state = hass.states.get("button.tp393_5678_set_date_time")
     assert button_state.state != STATE_UNKNOWN
