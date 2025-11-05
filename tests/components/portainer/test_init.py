@@ -1,7 +1,6 @@
 """Test the Portainer initial specific behavior."""
 
-import subprocess
-import sys
+from importlib.metadata import distribution
 from unittest.mock import AsyncMock
 
 from pyportainer.exceptions import (
@@ -86,40 +85,24 @@ def test_pyportainer_no_forbidden_dependencies() -> None:
     See: https://github.com/home-assistant/core/pull/155781
     See: https://github.com/home-assistant/core/pull/155783
     """
-    # Get pyportainer's direct dependencies using pip show
+    # Get pyportainer's metadata using importlib.metadata
     try:
-        result = subprocess.run(
-            [sys.executable, "-m", "pip", "show", "pyportainer"],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-    except subprocess.CalledProcessError as err:
-        pytest.fail(
-            f"Failed to get pyportainer package info: {err.stderr or err.stdout}"
-        )
+        dist = distribution("pyportainer")
+    except Exception as err:  # noqa: BLE001
+        pytest.fail(f"Failed to get pyportainer distribution info: {err}")
 
-    # Extract the Requires line from pip show output
-    requires_line = None
-    for line in result.stdout.split("\n"):
-        if line.startswith("Requires:"):
-            requires_line = line
-            break
+    # Get direct dependencies from metadata
+    # The requires property returns a list like ['aiohttp (>=3.0.0)', 'yarl (>=1.0)']
+    requires = dist.requires or []
 
-    # pip show should always include a Requires line, even if empty
-    if requires_line is None:
-        pytest.fail(
-            f"Could not find 'Requires:' line in pip show output:\n{result.stdout}"
-        )
-
-    # Parse direct dependencies
-    # Format is "Requires: dep1, dep2, dep3" or "Requires: " if no dependencies
-    requires_text = requires_line.split(":", 1)[1].strip()
-
-    if requires_text:
-        dependencies = {dep.strip() for dep in requires_text.split(",")}
-    else:
-        dependencies = set()
+    # Extract package names without version specifiers or extras
+    # Package names are before the first space, parenthesis, bracket, or version operator
+    dependencies = set()
+    for req in requires:
+        # Split on whitespace, operators, and markers - take the first part
+        # This handles formats like: 'package', 'package (>=1.0)', 'package[extra]', etc.
+        package_name = req.split()[0].split("(")[0].split("[")[0].strip()
+        dependencies.add(package_name)
 
     # Assert that forbidden documentation packages are not in direct dependencies
     # mkdocs and sphinx were added to FORBIDDEN_PACKAGES in PR #155781
