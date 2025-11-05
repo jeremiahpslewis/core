@@ -80,16 +80,24 @@ def test_pyportainer_no_forbidden_dependencies() -> None:
     to version 1.0.13 to remove mkdocs and sphinx dependencies that were
     inadvertently included in version 1.0.12.
 
+    This is a regression test to ensure future versions don't reintroduce
+    documentation build dependencies as runtime dependencies.
+
     See: https://github.com/home-assistant/core/pull/155781
     See: https://github.com/home-assistant/core/pull/155783
     """
     # Get pyportainer's direct dependencies using pip show
-    result = subprocess.run(
-        [sys.executable, "-m", "pip", "show", "pyportainer"],
-        capture_output=True,
-        text=True,
-        check=True,
-    )
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", "pip", "show", "pyportainer"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except subprocess.CalledProcessError as err:
+        pytest.fail(
+            f"Failed to get pyportainer package info: {err.stderr or err.stdout}"
+        )
 
     # Extract the Requires line from pip show output
     requires_line = None
@@ -98,7 +106,11 @@ def test_pyportainer_no_forbidden_dependencies() -> None:
             requires_line = line
             break
 
-    assert requires_line is not None, "Could not find Requires line in pip show output"
+    # pip show should always include a Requires line, even if empty
+    if requires_line is None:
+        pytest.fail(
+            f"Could not find 'Requires:' line in pip show output:\n{result.stdout}"
+        )
 
     # Parse direct dependencies
     # Format is "Requires: dep1, dep2, dep3" or "Requires: " if no dependencies
@@ -110,7 +122,7 @@ def test_pyportainer_no_forbidden_dependencies() -> None:
         dependencies = set()
 
     # Assert that forbidden documentation packages are not in direct dependencies
-    # This is a regression test to ensure future versions don't reintroduce these
+    # mkdocs and sphinx were added to FORBIDDEN_PACKAGES in PR #155781
     assert "mkdocs" not in dependencies, (
         "pyportainer should not depend on mkdocs (documentation tool)"
     )
