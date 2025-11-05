@@ -133,3 +133,30 @@ async def test_buttons_tp358_press(
 
     button_state = hass.states.get("button.tp358_4221_set_date_time")
     assert button_state.state != STATE_UNKNOWN
+
+
+@pytest.mark.usefixtures("setup_thermopro")
+async def test_buttons_tp358_availability_signal(hass: HomeAssistant) -> None:
+    """Test TP358/TP393 button availability maintained via connectable service info."""
+    # Initially no button should exist
+    assert not hass.states.get("button.tp358_4221_set_date_time")
+
+    # Inject initial service info to create the button
+    inject_bluetooth_service_info(hass, TP358_SERVICE_INFO)
+    await hass.async_block_till_done()
+
+    button = hass.states.get("button.tp358_4221_set_date_time")
+    assert button is not None
+    # Button should be in unknown state and available since service info is connectable
+    assert button.state == STATE_UNKNOWN
+    assert button.attributes.get("available", True) is not False
+
+    # Inject multiple connectable service info updates to verify availability is maintained
+    for _ in range(3):
+        inject_bluetooth_service_info(hass, TP358_SERVICE_INFO)
+        await hass.async_block_till_done()
+
+        button = hass.states.get("button.tp358_4221_set_date_time")
+        assert button is not None
+        # Button should remain available as we keep receiving connectable service info
+        assert button.state != STATE_UNAVAILABLE
