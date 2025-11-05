@@ -83,15 +83,13 @@ def test_pyportainer_no_forbidden_dependencies() -> None:
     See: https://github.com/home-assistant/core/pull/155781
     See: https://github.com/home-assistant/core/pull/155783
     """
-    # Get all installed packages and their dependencies
+    # Get pyportainer's direct dependencies using pip show
     result = subprocess.run(
         [sys.executable, "-m", "pip", "show", "pyportainer"],
         capture_output=True,
         text=True,
-        check=False,
+        check=True,
     )
-
-    assert result.returncode == 0, "pyportainer is not installed"
 
     # Extract the Requires line from pip show output
     requires_line = None
@@ -102,7 +100,7 @@ def test_pyportainer_no_forbidden_dependencies() -> None:
 
     assert requires_line is not None, "Could not find Requires line in pip show output"
 
-    # Parse dependencies
+    # Parse direct dependencies
     # Format is "Requires: dep1, dep2, dep3" or "Requires: " if no dependencies
     requires_text = requires_line.split(":", 1)[1].strip()
 
@@ -111,7 +109,8 @@ def test_pyportainer_no_forbidden_dependencies() -> None:
     else:
         dependencies = set()
 
-    # Assert that forbidden documentation packages are not in dependencies
+    # Assert that forbidden documentation packages are not in direct dependencies
+    # This is a regression test to ensure future versions don't reintroduce these
     assert "mkdocs" not in dependencies, (
         "pyportainer should not depend on mkdocs (documentation tool)"
     )
