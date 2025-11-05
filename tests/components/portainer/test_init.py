@@ -1,5 +1,7 @@
 """Test the Portainer initial specific behavior."""
 
+import subprocess
+import sys
 from unittest.mock import AsyncMock
 
 from pyportainer.exceptions import (
@@ -69,3 +71,50 @@ async def test_migrations(hass: HomeAssistant) -> None:
     assert entry.data[CONF_URL] == "http://test_host"
     assert entry.data[CONF_API_TOKEN] == "test_key"
     assert entry.data[CONF_VERIFY_SSL] is True
+
+
+def test_pyportainer_no_forbidden_dependencies() -> None:
+    """Test that pyportainer does not have mkdocs or sphinx as dependencies.
+
+    This test verifies the fix from PR #155783, which bumped pyportainer
+    to version 1.0.13 to remove mkdocs and sphinx dependencies that were
+    inadvertently included in version 1.0.12.
+
+    See: https://github.com/home-assistant/core/pull/155781
+    See: https://github.com/home-assistant/core/pull/155783
+    """
+    # Get all installed packages and their dependencies
+    result = subprocess.run(
+        [sys.executable, "-m", "pip", "show", "pyportainer"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, "pyportainer is not installed"
+
+    # Extract the Requires line from pip show output
+    requires_line = None
+    for line in result.stdout.split("\n"):
+        if line.startswith("Requires:"):
+            requires_line = line
+            break
+
+    assert requires_line is not None, "Could not find Requires line in pip show output"
+
+    # Parse dependencies
+    # Format is "Requires: dep1, dep2, dep3" or "Requires: " if no dependencies
+    requires_text = requires_line.split(":", 1)[1].strip()
+
+    if requires_text:
+        dependencies = {dep.strip() for dep in requires_text.split(",")}
+    else:
+        dependencies = set()
+
+    # Assert that forbidden documentation packages are not in dependencies
+    assert "mkdocs" not in dependencies, (
+        "pyportainer should not depend on mkdocs (documentation tool)"
+    )
+    assert "sphinx" not in dependencies, (
+        "pyportainer should not depend on sphinx (documentation tool)"
+    )
