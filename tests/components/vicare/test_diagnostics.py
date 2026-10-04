@@ -81,8 +81,8 @@ async def test_diagnostics_scopes_features_to_their_device(
     diag = await get_diagnostics_for_config_entry(hass, hass_client, mock_config_entry)
 
     dumps = {entry["device"]["id"]: entry["data"] for entry in diag["data"]}
-    # 167 and 325 features; without scoping both would dump all 492.
-    assert [len(dumps["deviceId0"]), len(dumps["deviceId1"])] == [167, 325]
+    # 167 and 327 features; without scoping both would dump all 494.
+    assert [len(dumps["deviceId0"]), len(dumps["deviceId1"])] == [167, 327]
     for device_id in ("deviceId0", "deviceId1"):
         assert {
             feature["uri"].split("/devices/")[1].split("/")[0]

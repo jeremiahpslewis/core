@@ -1,9 +1,10 @@
 """Fixtures for ViCare integration tests."""
 
 from collections.abc import AsyncGenerator, Generator
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import re
 import time
+from typing import Any
 from unittest.mock import AsyncMock, Mock, patch
 
 import pytest
@@ -34,6 +35,8 @@ class Fixture:
     # Opt-in shared gateway serial; defaults to a per-fixture gateway when unset.
     gateway_id: str | None = None
     online: bool = True
+    # Replaces the properties of the named features in the loaded data.
+    properties: dict[str, dict[str, Any]] = field(default_factory=dict)
 
 
 class MockPyViCare:
@@ -119,6 +122,8 @@ class MockViCareService:
                 feature["uri"] = re.sub(
                     r"/devices/[^/]+/", f"/devices/{device_id}/", feature["uri"]
                 )
+            if feature["feature"] in fixture.properties:
+                feature["properties"] = fixture.properties[feature["feature"]]
         self._features[device_id] = features
 
     def _fetch_all_features(self, accessor: ViCareDeviceAccessor):

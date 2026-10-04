@@ -2,6 +2,7 @@
 
 from contextlib import ExitStack
 from datetime import timedelta
+import logging
 import threading
 from typing import Any
 from unittest.mock import patch
@@ -14,7 +15,7 @@ from syrupy.assertion import SnapshotAssertion
 from homeassistant.components.fan import DOMAIN as FAN_DOMAIN
 from homeassistant.components.sensor import DOMAIN as SENSOR_DOMAIN
 from homeassistant.components.vicare.const import DEFAULT_CACHE_DURATION
-from homeassistant.const import Platform
+from homeassistant.const import STATE_UNKNOWN, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_component import async_update_entity
@@ -65,6 +66,42 @@ async def test_all_entities(
         await setup_integration(hass, mock_config_entry)
 
     await snapshot_platform(hass, entity_registry, snapshot, mock_config_entry.entry_id)
+
+
+async def test_unknown_enum_value(
+    hass: HomeAssistant,
+    mock_config_entry: MockConfigEntry,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
+    """Test a value missing from an enum sensor's options reads as unknown."""
+    fixtures: list[Fixture] = [
+        Fixture(
+            {"type:heatpump"},
+            "vicare/Vitocal250A.json",
+            properties={
+                "heating.valves.fourThreeWay.position": {
+                    "value": {"type": "string", "value": "somethingNew"}
+                }
+            },
+        ),
+    ]
+    caplog.set_level(logging.DEBUG, logger="homeassistant.components.vicare")
+    with (
+        patch(
+            "homeassistant.helpers.config_entry_oauth2_flow.OAuth2Session.async_ensure_token_valid",
+        ),
+        patch(
+            f"{MODULE}._setup_vicare_api",
+            return_value=MockPyViCare(fixtures).as_vicare_data(),
+        ),
+        patch(f"{MODULE}.PLATFORMS", [Platform.SENSOR]),
+    ):
+        await setup_integration(hass, mock_config_entry)
+
+    state = hass.states.get("sensor.model0_4_3_way_valve_position")
+    assert state is not None
+    assert state.state == STATE_UNKNOWN
+    assert "Unknown value something_new" in caplog.text
 
 
 @pytest.mark.usefixtures("entity_registry_enabled_by_default")

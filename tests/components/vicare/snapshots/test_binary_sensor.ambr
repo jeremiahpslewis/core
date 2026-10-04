@@ -808,6 +808,361 @@
     'state': 'unavailable',
   })
 # ---
+# name: test_all_entities[binary_sensor.model5_circulation_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.model5_circulation_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Circulation pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Circulation pump',
+    'platform': 'vicare',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circulation_pump',
+    'unique_id': 'gateway5_deviceSerialVitocal250A-circulationpump_active-0',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_circulation_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'model5 Circulation pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.model5_circulation_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_compressor-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.model5_compressor',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Compressor',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Compressor',
+    'platform': 'vicare',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'compressor',
+    'unique_id': 'gateway5_deviceSerialVitocal250A-compressor_active-0',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_compressor-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'model5 Compressor',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.model5_compressor',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_defrosting-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.model5_defrosting',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Defrosting',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Defrosting',
+    'platform': 'vicare',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'defrosting',
+    'unique_id': 'gateway5_deviceSerialVitocal250A-defrosting',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_defrosting-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'model5 Defrosting',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.model5_defrosting',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_dhw_circulation_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.model5_dhw_circulation_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'DHW circulation pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'DHW circulation pump',
+    'platform': 'vicare',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'domestic_hot_water_circulation_pump',
+    'unique_id': 'gateway5_deviceSerialVitocal250A-dhw_circulationpump_active',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_dhw_circulation_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'model5 DHW circulation pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.model5_dhw_circulation_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_frost_protection-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.model5_frost_protection',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Frost protection',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Frost protection',
+    'platform': 'vicare',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'frost_protection',
+    'unique_id': 'gateway5_deviceSerialVitocal250A-frost_protection_active-0',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_frost_protection-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'model5 Frost protection',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.model5_frost_protection',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_one_time_charge-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.model5_one_time_charge',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'One-time charge',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'One-time charge',
+    'platform': 'vicare',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'one_time_charge',
+    'unique_id': 'gateway5_deviceSerialVitocal250A-one_time_charge',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_one_time_charge-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'model5 One-time charge',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.model5_one_time_charge',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_power_consumption_limited-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.model5_power_consumption_limited',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Power consumption limited',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Power consumption limited',
+    'platform': 'vicare',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'power_limited',
+    'unique_id': 'gateway5_deviceSerialVitocal250A-power_limited',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[binary_sensor.model5_power_consumption_limited-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'model5 Power consumption limited',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.model5_power_consumption_limited',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'unavailable',
+  })
+# ---
 # name: test_binary_sensors[burner]
   StateSnapshot({
     'attributes': ReadOnlyDict({

@@ -10,6 +10,9 @@
       "circulation_pump": {
         "default": "mdi:pump"
       },
+      "defrosting": {
+        "default": "mdi:snowflake-melt"
+      },
       "domestic_hot_water_circulation_pump": {
         "default": "mdi:pump"
       },
@@ -33,6 +36,9 @@
       },
       "one_time_charge": {
         "default": "mdi:shower-head"
+      },
+      "power_limited": {
+        "default": "mdi:transmission-tower"
       },
       "solar_pump": {
         "default": "mdi:pump"
@@ -110,11 +116,43 @@
       "compressor_phase": {
         "default": "mdi:information"
       },
+      "compressor_speed": {
+        "default": "mdi:rotate-right"
+      },
       "compressor_starts": {
         "default": "mdi:counter"
       },
       "ess_state_of_charge": {
         "default": "mdi:home-battery"
+      },
+      "four_three_way_valve_position": {
+        "default": "mdi:pipe-valve",
+        "state": {
+          "climat_circuit_two_defrost": "mdi:snowflake-melt",
+          "climate_circuit_one": "mdi:radiator",
+          "domestic_hot_water": "mdi:water-boiler"
+        }
+      },
+      "heat_production_current": {
+        "default": "mdi:heat-wave"
+      },
+      "heat_production_summary_dhw_currentday": {
+        "default": "mdi:heat-wave"
+      },
+      "heat_production_summary_dhw_currentmonth": {
+        "default": "mdi:heat-wave"
+      },
+      "heat_production_summary_dhw_currentyear": {
+        "default": "mdi:heat-wave"
+      },
+      "heat_production_summary_heating_currentday": {
+        "default": "mdi:heat-wave"
+      },
+      "heat_production_summary_heating_currentmonth": {
+        "default": "mdi:heat-wave"
+      },
+      "heat_production_summary_heating_currentyear": {
+        "default": "mdi:heat-wave"
       },
       "heating_rod_hours": {
         "default": "mdi:counter"
@@ -133,6 +171,20 @@
       },
       "photovoltaic_energy_production_today": {
         "default": "mdi:solar-power"
+      },
+      "power_limitation_source": {
+        "default": "mdi:transmission-tower"
+      },
+      "secondary_circuit_operation_state": {
+        "default": "mdi:heat-pump-outline",
+        "state": {
+          "cooling": "mdi:snowflake",
+          "heating": "mdi:fire",
+          "standby": "mdi:power-standby"
+        }
+      },
+      "secondary_circuit_valve_position": {
+        "default": "mdi:pipe-valve"
       },
       "valve_position": {
         "default": "mdi:pipe-valve"

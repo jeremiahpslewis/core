@@ -4941,6 +4941,28 @@
       "apiVersion": 1,
       "commands": {},
       "deviceId": "0",
+      "feature": "heating.heat.production.current",
+      "gatewayId": "################",
+      "isEnabled": true,
+      "isReady": true,
+      "properties": {
+        "status": {
+          "type": "string",
+          "value": "connected"
+        },
+        "value": {
+          "type": "number",
+          "unit": "kilowatt",
+          "value": 0
+        }
+      },
+      "timestamp": "2025-10-05T10:08:15.229Z",
+      "uri": "https://api.viessmann-climatesolutions.com/iot/v2/features/installations/#######/gateways/################/devices/0/features/heating.heat.production.current"
+    },
+    {
+      "apiVersion": 1,
+      "commands": {},
+      "deviceId": "0",
       "feature": "heating.heat.production.summary.cooling",
       "gatewayId": "################",
       "isEnabled": true,
@@ -5582,6 +5604,28 @@
       "properties": {},
       "timestamp": "2025-10-05T05:14:18.020Z",
       "uri": "https://api.viessmann-climatesolutions.com/iot/v2/features/installations/#######/gateways/################/devices/0/features/heating.power.consumption.cooling"
+    },
+    {
+      "apiVersion": 1,
+      "commands": {},
+      "deviceId": "0",
+      "feature": "heating.power.consumption.current",
+      "gatewayId": "################",
+      "isEnabled": true,
+      "isReady": true,
+      "properties": {
+        "status": {
+          "type": "string",
+          "value": "connected"
+        },
+        "value": {
+          "type": "number",
+          "unit": "kilowatt",
+          "value": 0
+        }
+      },
+      "timestamp": "2025-10-05T10:08:15.229Z",
+      "uri": "https://api.viessmann-climatesolutions.com/iot/v2/features/installations/#######/gateways/################/devices/0/features/heating.power.consumption.current"
     },
     {
       "apiVersion": 1,

@@ -35,6 +35,9 @@
       "compressor": {
         "name": "Compressor"
       },
+      "defrosting": {
+        "name": "Defrosting"
+      },
       "domestic_hot_water_charging": {
         "name": "DHW charging"
       },
@@ -55,6 +58,9 @@
       },
       "one_time_charge": {
         "name": "One-time charge"
+      },
+      "power_limited": {
+        "name": "Power consumption limited"
       },
       "solar_pump": {
         "name": "Solar pump"
@@ -225,6 +231,12 @@
       "compressor_modulation": {
         "name": "Compressor modulation"
       },
+      "compressor_motor_chamber_temperature": {
+        "name": "Compressor motor chamber temperature"
+      },
+      "compressor_oil_temperature": {
+        "name": "Compressor oil temperature"
+      },
       "compressor_outlet_pressure": {
         "name": "Compressor outlet pressure"
       },
@@ -247,6 +259,9 @@
       },
       "compressor_power": {
         "name": "Compressor power"
+      },
+      "compressor_speed": {
+        "name": "Compressor speed"
       },
       "compressor_starts": {
         "name": "Compressor starts"
@@ -376,6 +391,14 @@
       "filter_remaining_hours": {
         "name": "Filter remaining hours"
       },
+      "four_three_way_valve_position": {
+        "name": "4/3-way valve position",
+        "state": {
+          "climat_circuit_two_defrost": "Heating/cooling circuit 2 / defrost",
+          "climate_circuit_one": "Heating/cooling circuit 1",
+          "domestic_hot_water": "Domestic hot water"
+        }
+      },
       "fuel_need": {
         "name": "Fuel need"
       },
@@ -426,6 +449,27 @@
       },
       "gas_summary_consumption_heating_lastsevendays": {
         "name": "Heating gas consumption last seven days"
+      },
+      "heat_production_current": {
+        "name": "Heat production"
+      },
+      "heat_production_summary_dhw_currentday": {
+        "name": "DHW heat production today"
+      },
+      "heat_production_summary_dhw_currentmonth": {
+        "name": "DHW heat production this month"
+      },
+      "heat_production_summary_dhw_currentyear": {
+        "name": "DHW heat production this year"
+      },
+      "heat_production_summary_heating_currentday": {
+        "name": "Heating heat production today"
+      },
+      "heat_production_summary_heating_currentmonth": {
+        "name": "Heating heat production this month"
+      },
+      "heat_production_summary_heating_currentyear": {
+        "name": "Heating heat production this year"
       },
       "heating_rod_hours": {
         "name": "Heating rod hours"
@@ -527,6 +571,9 @@
           "ready": "[%key:common::state::standby%]"
         }
       },
+      "power_consumption_current": {
+        "name": "Power consumption"
+      },
       "power_consumption_this_month": {
         "name": "Electricity consumption this month"
       },
@@ -538,6 +585,16 @@
       },
       "power_consumption_today": {
         "name": "Electricity consumption today"
+      },
+      "power_limit": {
+        "name": "Power consumption limit"
+      },
+      "power_limitation_source": {
+        "name": "Power limitation source",
+        "state": {
+          "14a_digital_contacts": "Digital contacts",
+          "14a_off": "[%key:common::state::off%]"
+        }
       },
       "power_production_current": {
         "name": "Power production current"
@@ -566,11 +623,22 @@
       "return_temperature": {
         "name": "Return temperature"
       },
+      "secondary_circuit_operation_state": {
+        "name": "Secondary circuit operation state",
+        "state": {
+          "cooling": "[%key:component::climate::entity_component::_::state_attributes::hvac_action::state::cooling%]",
+          "heating": "[%key:component::climate::entity_component::_::state_attributes::hvac_action::state::heating%]",
+          "standby": "[%key:common::state::standby%]"
+        }
+      },
       "secondary_circuit_return_temperature": {
         "name": "Secondary circuit return temperature"
       },
       "secondary_circuit_supply_temperature": {
         "name": "Secondary circuit supply temperature"
+      },
+      "secondary_circuit_valve_position": {
+        "name": "Secondary circuit valve position"
       },
       "solar_power_production_this_month": {
         "name": "Solar energy production this month"
@@ -616,6 +684,9 @@
       },
       "supply_temperature": {
         "name": "Supply temperature"
+      },
+      "supply_temperature_target": {
+        "name": "Target supply temperature"
       },
       "target_temperature": {
         "name": "Target temperature"
